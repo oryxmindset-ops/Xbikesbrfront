@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap">
+<title>XBIKESBR - MONTADINHAS | Loja afiliada</title>
+<style>
+:root{--bg:#fff;--surface:#fafafa;--ink:#111;--muted:#555;--line:#ddd;--accent:#111;--cta:#ffe600;--ctaink:#000;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#fff;--surface:#fafafa;--ink:#111;--muted:#555;--line:#ddd;--accent:#111;--cta:#ffe600;--ctaink:#000}}
+:root[data-theme="dark"]{--bg:#fff;--surface:#fafafa;--ink:#111;--muted:#555;--line:#ddd;--accent:#111;--cta:#ffe600;--ctaink:#000}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Roboto,"Segoe UI",Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 16px 40px}
+header{background:#000;color:#fff;border-radius:16px;padding:26px 20px 28px;margin:4px 0 20px;position:relative;overflow:hidden}
+header h1{font-family:Roboto,"Segoe UI",Arial,sans-serif;font-weight:900;font-size:clamp(2.2rem,9vw,3.6rem);margin:0 0 12px;color:#fff;line-height:1;letter-spacing:-.01em;text-transform:uppercase}
+header h1 .sub{display:block;color:var(--cta);font-size:.42em;font-weight:700;letter-spacing:.2em;margin-top:10px}
+header p{margin:0;color:#d4d4d4;max-width:60ch}
+.tools{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+input[type=search]{font-family:inherit;width:100%;padding:12px 14px;font-size:1rem;border:2px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
+input[type=search]:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-family:inherit;border:2px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 14px;border-radius:999px;font-size:.95rem;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.pic{height:150px;display:flex;align-items:center;justify-content:center;font-size:4rem;background:var(--bg)}
+.pic img{width:100%;height:100%;object-fit:contain}
+.body{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.cat{font-size:.85rem;color:var(--muted)}
+.name{font-weight:700;font-size:1.05rem;margin:0}
+.desc{font-size:.92rem;color:var(--muted);margin:0;flex:1}
+.price{font-size:1.4rem;font-weight:700;margin-top:6px}
+.old{font-size:.85rem;color:var(--muted);text-decoration:line-through;font-weight:400;margin-left:6px}
+.buy{display:block;text-align:center;background:var(--cta);color:var(--ctaink);text-decoration:none;font-weight:700;padding:12px;border-radius:10px;margin-top:8px}
+.buy:hover{filter:brightness(.95)}
+.empty{padding:40px 0;text-align:center;color:var(--muted)}
+footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+.cupom{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border:2px dashed var(--cta);border-radius:14px;padding:14px 16px;margin-bottom:20px;background:var(--surface)}
+.cupom h2{margin:0;font-size:1.05rem}
+.cupom p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+.cupom-cod{display:flex;align-items:center;gap:8px}
+.cupom-cod code{font-family:inherit;font-weight:700;font-size:1.15rem;letter-spacing:.06em;border:2px solid var(--cta);color:var(--ink);padding:6px 12px;border-radius:8px}
+.cupom-cod button{font-family:inherit;font-weight:700;background:var(--cta);color:var(--ctaink);border:0;border-radius:8px;padding:10px 14px;cursor:pointer}
+.estilo{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.estilo label{font-weight:700}
+.estilo select{font-family:inherit;font-size:1rem;padding:10px 14px;border:2px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
+.app-aviso{display:none;align-items:center;gap:10px;flex-wrap:wrap;background:var(--cta);color:#000;border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:.92rem}
+.app-aviso span{flex:1;min-width:200px}
+.app-aviso a{background:#000;color:#fff;font-weight:700;text-decoration:none;padding:8px 12px;border-radius:8px}
+.app-aviso .copiar{background:#000;color:#fff;font-weight:700;font-size:.92rem;padding:8px 12px;border-radius:8px}
+.app-aviso button{font:inherit;background:none;border:0;font-size:1.1rem;cursor:pointer;color:#000}
+@media (max-width:480px){.pic{height:110px;font-size:3rem}.body{padding:10px}.name{font-size:.95rem}.desc{font-size:.82rem}.price{font-size:1.15rem}.old{display:block;margin:0}.buy{padding:10px;font-size:.9rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1><span style="color:#ff1f1f">X</span>BIKES<span style="color:#ffe600">B</span><span style="color:#1fcf5a">R</span><span class="sub">MONTADINHAS PADRÃO</span></h1>
+<p>Escolha o produto e finalize a compra com segurança no Mercado Livre. Os preços e a disponibilidade são os do app/site deles.</p>
+</header>
+
+<div class="app-aviso" id="aviso"><span id="avisoTxt"></span><a id="chromeBtn" href="#" hidden>Abrir no Chrome</a><button type="button" class="copiar" id="copiarBtn" hidden>Copiar link</button><button type="button" id="avisoX" aria-label="Fechar aviso">✕</button></div>
+
+<section class="cupom" aria-label="Cupom de desconto">
+<div><h2>Cupom disponível para alguns Acessorios</h2><p id="cupomTxt"></p></div>
+<div class="cupom-cod"><code id="cupomCod"></code><button type="button" id="cupomBtn">Copiar cupom</button></div>
+</section>
+
+<div class="tools">
+<input type="search" id="busca" placeholder="Buscar produto" aria-label="Buscar produto">
+<div class="estilo"><label for="estilo">Selecione o seu estilo</label><select id="estilo"><option value="BH">BH</option></select></div>
+<div class="chips" id="chips"></div>
+</div>
+
+<main class="grid" id="lista"></main>
+<p class="empty" id="vazio" hidden>Nenhum produto encontrado. Tente outra busca ou categoria.</p>
+
+</div>
+
+<script src="produtos.js"></script>
+<script>
+/* ============ EDITE AQUI ============
+   Para cada produto:
+   - link: seu link de afiliado (gerado no painel de afiliados do Mercado Livre)
+   - img: URL da imagem do produto (opcional; sem ela aparece o emoji)
+   - emoji: ícone usado quando não há imagem
+   ==================================== */
+const PRODUTOS_PADRAO = [
+  {nome:"Guidão Cargo Cg Fan Titan 160 Cromado Com Peso Mod Original",cat:"Motos",desc:"Com suporte de pesinho pronto para uso.",preco:43.90,antigo:97.95,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_995814-MLB81359921105_122024-OO-guidao-cargo-cg-fan-titan-160-cromado-com-peso-mod-original.jpg",link:"https://meli.la/1b4ZAkU"},
+  {nome:"Guidão Cromado Cbx 250 Twister 2001 2002 2003 2004 Ate 2008",cat:"Motos",desc:"Sahra,Xre 190,300,Bros 160,150,125,falcon",preco:41.90,antigo:0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_926727-MLB82034049447_012025-OO-guidao-cromado-cbx-250-twister-2001-2002-2003-2004-ate-2008.jpg",link:"https://meli.la/2HquUUB"},
+  {nome:"Adesivo Para Moto Bandeira Minas Gerais E Brasil Oficial",cat:"Motos",desc:"ㅤ",preco:19.90,antigo:0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_809251-MLB107524858970_032026-OO-adesivo-para-moto-bandeira-minas-gerais-e-brasil-oficial.jpg",link:"https://meli.la/32kALkf"},
+  {nome:"Garfo Rigido Sundown 26",cat:"Bikes",desc:"Aço Preto Compatível Monark Caloi.",preco:55.09,antigo:78.80,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_677406-MLA99987037489_112025-OO.jpg",link:"https://meli.la/2dE7CJB"},
+  {nome:"Manopla Absolute Bmx1 Preta Borracha 145mm Com Flange Plug",cat:"Bikes",desc:"ㅤ",preco:23.57,antigo:27.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_927317-MLA99606295538_122025-OO-manopla-absolute-bmx1-preta-borracha-145mm-flange-bike.jpg",link:"https://meli.la/1MmWHaa"},
+  {nome:"Freio De Bicicleta V-brake Booster Ferradura Alumínio Cores Cor Preto",cat:"Bikes",desc:"Cores: Preto,Branco",preco:27.9,antigo:65.88,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_731657-MLA79633363035_092024-OO.jpg",link:"https://meli.la/1S4Yke5"},
+  {nome:"Manete Freio Alumínio Mtb Gta Polida 3 Dedos Bike Bicicleta",cat:"Bikes",desc:"ㅤ",preco:22.90,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_970783-MLA99593281102_122025-OO-manete-freio-aluminio-mtb-gta-polida-3-dedos-bike-bicicleta.jpg",link:"https://meli.la/2Qqz4Cz"},
+  {nome:"Pezinho de biz",cat:"Bikes",desc:"Acompanha os parafusos.",preco:25.99,antigo:35.99,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_693770-MLB92379386281_092025-OO-peso-pezinho-guidao-biz-125-biz-100-cg-160-cargo-par.jpg",link:"https://meli.la/2Z8dzbG"},
+  {nome:"Barra Travessa Barrinha Trava De Guidão Cores 190mm Reforço",cat:"Bikes",desc:"ㅤ",preco:24.99,antigo:29.99,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_948819-MLB111763613468_062026-OO-barra-travessa-barrinha-trava-de-guidao-cores-190mm-reforco.jpg",link:"https://meli.la/2PSX1RX"},
+  {nome:"Pneu Kenda Flame Slick Aro 26 X 2.125 K1008a Preto",cat:"Bikes",desc:"",preco:78.75,antigo:105.0,estilo:"BH",img:"https://http2.mlstatic.com/D_Q_NP_748867-MLA93743300763_092025-F.webp",link:"https://meli.la/1FVJwfG"},
+  {nome:"Selim Bicicleta Passeio Cairu Ams 507 Confortável Aro 20/26",cat:"Bikes",desc:"ㅤ",preco:34.64,antigo:43.30,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_666699-MLB49182951724_022022-OO-selim-bicicleta-passeio-cairu-ams-507-confortavel-aro-2026.jpg",link:"https://meli.la/1E4DzVt"},
+  {nome:"Par Manete Alavanca Para Freio V Brake Mtb Urbana",cat:"Bikes",desc:"Meterial Aluminio",preco:75.0,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_884581-MLU74363089310_022024-OO.jpg",link:"https://meli.la/2RWZjzd"},
+  {nome:"Freio V-Brake GTA Alumínio Para Bicicleta Polido Dianteiro Traseiro",cat:"Bikes",desc:"Cores: Preto,Prata",preco:27.04,antigo:33.90,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_744501-MLA100659812543_122025-OO.jpg",link:"https://meli.la/2ST7Cg1"},
+  {nome:"Par Pedaleira Trolhão Apoio De Pé Bike Bmx Reforçado Aço 20",cat:"Bikes",desc:"Preto",preco:28.87,antigo:0,estilo:"BH",img:"https://http2.mlstatic.com/D_Q_NP_865096-MLB116992698881_082026-F-par-pedaleira-trolhao-apoio-de-pe-bike-bmx-reforcado-aco-20.webp",link:"https://meli.la/2nGCY64"},
+  {nome:"Mesa Guidão Monaco Alumínio 70mm P 22.2mm Mtb Preto/branco",cat:"Bikes",desc:"Cores: Preto,Branco",preco:67.99,antigo:90.80,estilo:"BH",img:"https://http2.mlstatic.com/D_Q_NP_700261-MLB113213491334_072026-F-mesa-guidao-monaco-aluminio-70mm-p-222mm-mtb-pretobranco.webp",link:"https://meli.la/14Xs78f"},
+  {nome:"Pneu Levorin Praieiro Slick Urbano Cor Preto 26 X 1.95",cat:"Bikes",desc:"ㅤ",preco:50.0,antigo:0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_608801-MLA100111436081_122025-OO.jpg",link:"https://meli.la/11rY5Vf"},
+  {nome:"Pedal Gts Plataforma Aluminio Rosca Grossa Esferas Bike",cat:"Bikes",desc:"ㅤ",preco:28.38,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_606247-MLA100082888935_122025-OO.jpg",link:"https://meli.la/2M6LNc3"},
+  {nome:"Kit 2 Rede Aranha 45x45 Moto Elástico Reforçado Bagageiro Preta Atacado",cat:"Bikes",desc:"ㅤ",preco:28.40,antigo:29.90,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_919082-MLB114368547467_072026-OO.jpg",link:"https://meli.la/1JsVUFu"},
+  {nome:"Aro 26 Aero Vmax Freio A Disco 36f Vzan Bicicleta Mtb Dh",cat:"Bikes",desc:"ㅤ",preco:78.97,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_970308-MLB93723289010_102025-OO-aro-26-aero-vmax-freio-a-disco-36f-vzan-bicicleta-mtb-dh.jpg",link:"https://meli.la/2nc6Dgv"},
+  {nome:"Garupa Bh Chapada Resistente Da Lbs Bikes",cat:"Bikes",desc:"ㅤ",preco:66.40,antigo:69.90,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_634243-MLB116216743082_092026-OO-garupa-bh-chapada-resistente-da-lbs-bikes.jpg",link:"https://meli.la/236ZwDL"},
+  {nome:"Pezinho de biz",cat:"Motos",desc:"Acompanha os parafusos.",preco:25.99,antigo:35.99,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_693770-MLB92379386281_092025-OO-peso-pezinho-guidao-biz-125-biz-100-cg-160-cargo-par.jpg",link:"https://meli.la/2Z8dzbG"},
+  {nome:"Adesivo Mandrake De Minas-Bh-Mg-Moto",cat:"Motos",desc:"ㅤ",preco:19.80,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_619204-MLB91333331640_092025-OO-adesivo-mandrake-de-minas--bh--mg--moto.jpg",link:"https://meli.la/1kagLSp"},
+  {nome:"Guidão Cargo Cg Fan Titan 160 Cromado Com Peso Mod Original",cat:"Bikes",desc:"Com suporte de pesinho pronto para uso.",preco:43.90,antigo:97.95,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_995814-MLB81359921105_122024-OO-guidao-cargo-cg-fan-titan-160-cromado-com-peso-mod-original.jpg",link:"https://meli.la/1b4ZAkU"},
+  {nome:"Kit 4 Lente Seta Laranja Cg Fan160 Titan160 Xre190 Bros160",cat:"Motos",desc:"ㅤ",preco:34.90,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_620909-MLB111546456091_052026-OO-kit-4-lente-seta-laranja-cg-fan160-titan160-xre190-bros160.jpg",link:""},
+  {nome:"Capacete Adesivado Taurus San Marino",cat:"Motos",desc:"ㅤ",preco:301.32,antigo:360.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_925206-MLB116598992632_092026-OO-capacete-adesivado-taurus-san-marino.jpg",link:"https://meli.la/1DHvnQc"},
+  {nome:"Pneu Bicicleta Aro 24x1.95 Slick Liso Levorin Preto",cat:"Bikes",desc:"ㅤ",preco:60.90,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_Q_NP_920195-MLU74423651170_022024-F.webp",link:"https://meli.la/1Qd4hdw"},
+  {nome:"Pneu Bike Aro 20 2.125 Cinborg Irado Slick Preto",cat:"Bikes",desc:"ㅤ",preco:77.90,antigo:150.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_776847-MLB121749123417_112026-OO-pneu-bike-aro-20-2125-cinborg-irado-slick-preto.jpg",link:"https://meli.la/2Y8uywT"},
+  {nome:"Barra Travessa Barrinha Trava De Guidão Cores 190mm Reforço",cat:"Motos",desc:"ㅤ",preco:24.99,antigo:29.99,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_948819-MLB111763613468_062026-OO-barra-travessa-barrinha-trava-de-guidao-cores-190mm-reforco.jpg",link:"https://meli.la/1Qd4hdw"},
+  {nome:"Coroa Engrenagem Para Pedivela Monobloco Preta",cat:"Bikes",desc:"46 Dentes",preco:19.95,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_848122-MLB45154129004_032021-OO-coroa-engrenagem-para-pedivela-monobloco-46-dentes-preta.jpg",link:"https://meli.la/1u3parg"},
+  {nome:"Descanso Central Alumínio Para Bicicleta",cat:"Bikes",desc:"ㅤ",preco:29.0,antigo:37.38,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_741157-MLB88972649398_082025-OO-descanso-central-aluminio-para-bicicleta.jpg",link:"https://meli.la/2KGASnH"},
+  {nome:"Rede Elástica Aranha Para Moto/ Bagageiro 45x45 Preta",cat:"Motos",desc:"ㅤ",preco:19.00,antigo:0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_880548-MLB90580655923_082025-OO.jpg",link:"https://meli.la/17mgHiZ"},
+  {nome:"Rede Elástica Bagageiro Baú Redinha 35x35 Vermelha",cat:"Moto",desc:"ㅤ",preco:20.61,antigo:21.99,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_802423-MLB54951621139_042023-OO.jpg",link:"https://meli.la/1YUqt5s"},
+  {nome:"Movimento Caixa Central 45mm De Bike C/ Rolamento Neco B890b",cat:"Bikes",desc:"ㅤ",preco:25.22,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_694364-MLA99606451884_122025-OO.jpg",link:"https://meli.la/1Ym6uUo"},
+  {nome:"Pedaleira Bike, Apoio Trolha Mtb, 38x 110 Mm, Aço Carbono, Cromado",cat:"Bikes",desc:"Prata",preco:22.90,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_937485-MLA99590931722_122025-OO.jpg",link:"https://meli.la/2ijwSch"},
+  {nome:"Jogo Movimento Caixa De Direção 22.2mm 8 Peças Trava Preto",cat:"Bikes",desc:"ㅤ",preco:15.97,antigo:29.98,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_996918-MLB82198988962_022025-OO-jogo-movimento-caixa-de-direcao-222mm-8-pecas-trava-preto.jpg",link:"https://meli.la/2anaYHc"},
+  {nome:"Freio Shimano Hidráulico Br-mt200 Preto Traseiro 1700mm",cat:"Bikes",desc:"ㅤ",preco:151.90,antigo:199.99,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_682829-MLA99947260105_112025-OO-freio-shimano-hidraulico-brmt200-preto-traseiro-1700mm.jpg",link:"https://meli.la/2qygiDq"},
+  {nome:"Aro 26 Aero Vmaxx Freio V-break 32f Preto",cat:"Bikes",desc:"ㅤ",preco:99.0,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_947669-MLB95498471085_102025-OO-aro-26-aero--vmaxx-freio-vbreak-32f-preto.jpg",link:"https://meli.la/1E3JT1a"},
+  {nome:"Garupa Bh Motorizada Aro 24 26 Bagageiro Reforçada Reta Grau",cat:"Bikes",desc:"ㅤ",preco:42.44,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_880975-MLB77940412704_082024-OO-garupa-bh-motorizada-aro-24-26-bagageiro-reforcada-reta-grau.jpg",link:"https://meli.la/1z9XM8Y"},
+  {nome:"Barra Estabilizadora Pára-lama Cg 160 Titan Fan Start",cat:"Bikes",desc:"ㅤ",preco:23.90,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_779776-MLB118347503901_092026-OO-barra-estabilizadora-paralama-cg-160-titan-fan-start.jpg",link:"https://meli.la/1XdBBtM"},
+];
+/* Se existir o arquivo produtos.js (gerado pelo painel admin), ele substitui a lista acima */
+const PRODUTOS = (window.LOJA && window.LOJA.produtos) || PRODUTOS_PADRAO;
+/* ==================================== */
+/* Cupom exibido no topo (troque pelo seu) */
+const CUPOM_PADRAO = {codigo:"CORREHOJEPROML", texto:"10% OFF em compras acima de R$79, com desconto máximo limitado a R$100."};
+const CUPOM = (window.LOJA && window.LOJA.cupom) || CUPOM_PADRAO;
+document.getElementById("cupomCod").textContent = CUPOM.codigo;
+document.getElementById("cupomTxt").textContent = CUPOM.texto;
+document.getElementById("cupomBtn").addEventListener("click",async e=>{
+  const b = e.currentTarget;
+  try{ await navigator.clipboard.writeText(CUPOM.codigo); b.textContent = "Cupom copiado!"; }
+  catch(err){ b.textContent = "Selecione e copie o código"; }
+  setTimeout(()=>{b.textContent = "Copiar cupom";},2500);
+});
+
+const brl = n => n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cats = ["Todas","Motos","Bikes"];
+let catAtiva = "Todas", termo = "", estiloAtivo = document.getElementById("estilo").value;
+
+const chips = document.getElementById("chips");
+const lista = document.getElementById("lista");
+const vazio = document.getElementById("vazio");
+
+function desenharChips(){
+  chips.innerHTML = cats.map(c=>`<button class="chip" aria-pressed="${c===catAtiva}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
+}
+function desenhar(){
+  const t = termo.trim().toLowerCase();
+  const itens = PRODUTOS.filter(p=>(!p.estilo||p.estilo===estiloAtivo)&&(catAtiva==="Todas"||p.cat===catAtiva)&&(p.nome+" "+p.desc).toLowerCase().includes(t));
+  vazio.hidden = itens.length>0;
+  lista.innerHTML = itens.map(p=>`
+    <article class="card">
+      <div class="pic">${p.img?`<img src="${esc(p.img)}" alt="${esc(p.nome)}" loading="lazy">`:esc(p.emoji)}</div>
+      <div class="body">
+        <span class="cat">${esc(p.cat)}</span>
+        <h2 class="name">${esc(p.nome)}</h2>
+        <p class="desc">${esc(p.desc)}</p>
+        <div class="price">${brl(p.preco)}${p.antigo?`<span class="old">${brl(p.antigo)}</span>`:""}</div>
+        ${p.link?`<a class="buy" href="${esc(p.link)}" rel="sponsored noopener">Comprar no Mercado Livre</a>`:`<span class="buy" style="opacity:.5">Em breve</span>`}
+      </div>
+    </article>`).join("");
+}
+chips.addEventListener("click",e=>{
+  const b = e.target.closest(".chip"); if(!b) return;
+  catAtiva = b.dataset.c; desenharChips(); desenhar();
+});
+document.getElementById("busca").addEventListener("input",e=>{termo=e.target.value;desenhar();});
+document.getElementById("estilo").addEventListener("change",e=>{estiloAtivo=e.target.value;desenhar();});
+/* Aviso para quem abre pelo TikTok, Instagram ou Facebook */
+(function(){
+  const ua = navigator.userAgent || "";
+  const forcar = /[?&]aviso=1/.test(location.search);
+  if(!forcar && !/musical_ly|BytedanceWebview|TikTok|Instagram|FBAN|FBAV|FB_IAB/i.test(ua)) return;
+  const av = document.getElementById("aviso"); av.style.display = "flex";
+  const android = /Android/i.test(ua);
+  const url = location.origin + location.pathname;
+  const txt = document.getElementById("avisoTxt");
+  if(android){
+    const b = document.getElementById("chromeBtn"); b.hidden = false;
+    b.href = "intent://" + location.host + location.pathname + "#Intent;scheme=https;package=com.android.chrome;end";
+    txt.textContent = "Para comprar com mais facilidade, abra no Chrome ou toque nos três pontinhos (⋯) e escolha “Abrir no navegador”.";
+  }else{
+    txt.textContent = "Para comprar com mais facilidade, toque nos três pontinhos (⋯) no canto superior e escolha “Abrir no navegador”. Ou copie o link e cole no Safari ou no Chrome.";
+  }
+  const cp = document.getElementById("copiarBtn"); cp.hidden = false;
+  cp.onclick = async ()=>{
+    try{ await navigator.clipboard.writeText(url); }
+    catch(e){ const t = document.createElement("textarea"); t.value = url; document.body.append(t); t.select(); try{ document.execCommand("copy"); }catch(_){} t.remove(); }
+    cp.textContent = "Link copiado!"; setTimeout(()=>{ cp.textContent = "Copiar link"; },2500);
+  };
+  document.getElementById("avisoX").onclick = ()=>av.remove();
+})();
+desenharChips(); desenhar();
+</script>
+</body>
+</html>
