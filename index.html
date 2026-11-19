@@ -47,6 +47,10 @@ footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);font-si
 .estilo{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .estilo label{font-weight:700}
 .estilo select{font-family:inherit;font-size:1rem;padding:10px 14px;border:2px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
+.app-aviso{display:none;align-items:center;gap:10px;flex-wrap:wrap;background:var(--cta);color:#000;border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:.92rem}
+.app-aviso span{flex:1;min-width:200px}
+.app-aviso a{background:#000;color:#fff;font-weight:700;text-decoration:none;padding:8px 12px;border-radius:8px}
+.app-aviso button{font:inherit;background:none;border:0;font-size:1.1rem;cursor:pointer;color:#000}
 @media (max-width:480px){.pic{height:110px;font-size:3rem}.body{padding:10px}.name{font-size:.95rem}.desc{font-size:.82rem}.price{font-size:1.15rem}.old{display:block;margin:0}.buy{padding:10px;font-size:.9rem}}
 </style>
 </head>
@@ -56,6 +60,8 @@ footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);font-si
 <h1><span style="color:#ff1f1f">X</span>BIKES<span style="color:#ffe600">B</span><span style="color:#1fcf5a">R</span><span class="sub">MONTADINHAS PADRÃO</span></h1>
 <p>Escolha o produto e finalize a compra com segurança no Mercado Livre. Os preços e a disponibilidade são os do app/site deles.</p>
 </header>
+
+<div class="app-aviso" id="aviso"><span id="avisoTxt"></span><a id="chromeBtn" href="#" hidden>Abrir no Chrome</a><button type="button" id="avisoX" aria-label="Fechar aviso">✕</button></div>
 
 <section class="cupom" aria-label="Cupom de desconto">
 <div><h2>Cupom disponível para alguns Acessorios</h2><p id="cupomTxt"></p></div>
@@ -71,9 +77,6 @@ footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);font-si
 <main class="grid" id="lista"></main>
 <p class="empty" id="vazio" hidden>Nenhum produto encontrado. Tente outra busca ou categoria.</p>
 
-<footer>
-<p></p>
-</footer>
 </div>
 
 <script src="produtos.js"></script>
@@ -108,7 +111,7 @@ const PRODUTOS_PADRAO = [
   {nome:"Pezinho de biz",cat:"Motos",desc:"Acompanha os parafusos.",preco:25.99,antigo:35.99,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_693770-MLB92379386281_092025-OO-peso-pezinho-guidao-biz-125-biz-100-cg-160-cargo-par.jpg",link:"https://meli.la/2Z8dzbG"},
   {nome:"Adesivo Mandrake De Minas-Bh-Mg-Moto",cat:"Motos",desc:"ㅤ",preco:19.80,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_619204-MLB91333331640_092025-OO-adesivo-mandrake-de-minas--bh--mg--moto.jpg",link:"https://meli.la/1kagLSp"},
   {nome:"Guidão Cargo Cg Fan Titan 160 Cromado Com Peso Mod Original",cat:"Bikes",desc:"Com suporte de pesinho pronto para uso.",preco:43.90,antigo:97.95,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_995814-MLB81359921105_122024-OO-guidao-cargo-cg-fan-titan-160-cromado-com-peso-mod-original.jpg",link:"https://meli.la/1b4ZAkU"},
-  {nome:"Kit 4 Lente Seta Laranja Cg Fan160 Titan160 Xre190 Bros160",cat:"Motos",desc:"ㅤ",preco:34.90,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_620909-MLB111546456091_052026-OO-kit-4-lente-seta-laranja-cg-fan160-titan160-xre190-bros160.jpg",link:"https://meli.la/11K2ocd"},
+  {nome:"Kit 4 Lente Seta Laranja Cg Fan160 Titan160 Xre190 Bros160",cat:"Motos",desc:"ㅤ",preco:34.90,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_620909-MLB111546456091_052026-OO-kit-4-lente-seta-laranja-cg-fan160-titan160-xre190-bros160.jpg",link:""},
   {nome:"Capacete Adesivado Taurus San Marino",cat:"Motos",desc:"ㅤ",preco:301.32,antigo:360.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_925206-MLB116598992632_092026-OO-capacete-adesivado-taurus-san-marino.jpg",link:"https://meli.la/1DHvnQc"},
   {nome:"Pneu Bicicleta Aro 24x1.95 Slick Liso Levorin Preto",cat:"Bikes",desc:"ㅤ",preco:60.90,antigo:0.0,estilo:"BH",img:"https://http2.mlstatic.com/D_Q_NP_920195-MLU74423651170_022024-F.webp",link:"https://meli.la/1Qd4hdw"},
   {nome:"Pneu Bike Aro 20 2.125 Cinborg Irado Slick Preto",cat:"Bikes",desc:"ㅤ",preco:77.90,antigo:150.0,estilo:"BH",img:"https://http2.mlstatic.com/D_NQ_NP_776847-MLB121749123417_112026-OO-pneu-bike-aro-20-2125-cinborg-irado-slick-preto.jpg",link:"https://meli.la/2Y8uywT"},
@@ -164,7 +167,7 @@ function desenhar(){
         <h2 class="name">${esc(p.nome)}</h2>
         <p class="desc">${esc(p.desc)}</p>
         <div class="price">${brl(p.preco)}${p.antigo?`<span class="old">${brl(p.antigo)}</span>`:""}</div>
-        <a class="buy" href="${esc(p.link)}" target="_blank" rel="sponsored noopener noreferrer">Comprar no Mercado Livre</a>
+        ${p.link?`<a class="buy" href="${esc(p.link)}" rel="sponsored noopener">Comprar no Mercado Livre</a>`:`<span class="buy" style="opacity:.5">Em breve</span>`}
       </div>
     </article>`).join("");
 }
@@ -174,6 +177,21 @@ chips.addEventListener("click",e=>{
 });
 document.getElementById("busca").addEventListener("input",e=>{termo=e.target.value;desenhar();});
 document.getElementById("estilo").addEventListener("change",e=>{estiloAtivo=e.target.value;desenhar();});
+/* Aviso para quem abre pelo TikTok, Instagram ou Facebook */
+(function(){
+  const ua = navigator.userAgent || "";
+  const forcar = /[?&]aviso=1/.test(location.search);
+  if(!forcar && !/musical_ly|BytedanceWebview|TikTok|Instagram|FBAN|FBAV|FB_IAB/i.test(ua)) return;
+  const av = document.getElementById("aviso"); av.style.display = "flex";
+  const android = /Android/i.test(ua);
+  const caminho = location.host + location.pathname + location.search.replace(/[?&]aviso=1/,"");
+  const b = document.getElementById("chromeBtn"); b.hidden = false;
+  b.href = android
+    ? "intent://" + caminho + "#Intent;scheme=https;package=com.android.chrome;end"
+    : "googlechromes://" + caminho;
+  document.getElementById("avisoTxt").textContent = "Para comprar com mais facilidade, abra no Chrome. Se não abrir, toque nos três pontinhos (⋯) e escolha “Abrir no navegador”.";
+  document.getElementById("avisoX").onclick = ()=>av.remove();
+})();
 desenharChips(); desenhar();
 </script>
 </body>
