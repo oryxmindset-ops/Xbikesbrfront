@@ -50,6 +50,7 @@ footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);font-si
 .app-aviso{display:none;align-items:center;gap:10px;flex-wrap:wrap;background:var(--cta);color:#000;border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:.92rem}
 .app-aviso span{flex:1;min-width:200px}
 .app-aviso a{background:#000;color:#fff;font-weight:700;text-decoration:none;padding:8px 12px;border-radius:8px}
+.app-aviso .copiar{background:#000;color:#fff;font-weight:700;font-size:.92rem;padding:8px 12px;border-radius:8px}
 .app-aviso button{font:inherit;background:none;border:0;font-size:1.1rem;cursor:pointer;color:#000}
 @media (max-width:480px){.pic{height:110px;font-size:3rem}.body{padding:10px}.name{font-size:.95rem}.desc{font-size:.82rem}.price{font-size:1.15rem}.old{display:block;margin:0}.buy{padding:10px;font-size:.9rem}}
 </style>
@@ -61,7 +62,7 @@ footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);font-si
 <p>Escolha o produto e finalize a compra com segurança no Mercado Livre. Os preços e a disponibilidade são os do app/site deles.</p>
 </header>
 
-<div class="app-aviso" id="aviso"><span id="avisoTxt"></span><a id="chromeBtn" href="#" hidden>Abrir no Chrome</a><button type="button" id="avisoX" aria-label="Fechar aviso">✕</button></div>
+<div class="app-aviso" id="aviso"><span id="avisoTxt"></span><a id="chromeBtn" href="#" hidden>Abrir no Chrome</a><button type="button" class="copiar" id="copiarBtn" hidden>Copiar link</button><button type="button" id="avisoX" aria-label="Fechar aviso">✕</button></div>
 
 <section class="cupom" aria-label="Cupom de desconto">
 <div><h2>Cupom disponível para alguns Acessorios</h2><p id="cupomTxt"></p></div>
@@ -184,12 +185,21 @@ document.getElementById("estilo").addEventListener("change",e=>{estiloAtivo=e.ta
   if(!forcar && !/musical_ly|BytedanceWebview|TikTok|Instagram|FBAN|FBAV|FB_IAB/i.test(ua)) return;
   const av = document.getElementById("aviso"); av.style.display = "flex";
   const android = /Android/i.test(ua);
-  const caminho = location.host + location.pathname + location.search.replace(/[?&]aviso=1/,"");
-  const b = document.getElementById("chromeBtn"); b.hidden = false;
-  b.href = android
-    ? "intent://" + caminho + "#Intent;scheme=https;package=com.android.chrome;end"
-    : "googlechromes://" + caminho;
-  document.getElementById("avisoTxt").textContent = "Para comprar com mais facilidade, abra no Chrome. Se não abrir, toque nos três pontinhos (⋯) e escolha “Abrir no navegador”.";
+  const url = location.origin + location.pathname;
+  const txt = document.getElementById("avisoTxt");
+  if(android){
+    const b = document.getElementById("chromeBtn"); b.hidden = false;
+    b.href = "intent://" + location.host + location.pathname + "#Intent;scheme=https;package=com.android.chrome;end";
+    txt.textContent = "Para comprar com mais facilidade, abra no Chrome ou toque nos três pontinhos (⋯) e escolha “Abrir no navegador”.";
+  }else{
+    txt.textContent = "Para comprar com mais facilidade, toque nos três pontinhos (⋯) no canto superior e escolha “Abrir no navegador”. Ou copie o link e cole no Safari ou no Chrome.";
+  }
+  const cp = document.getElementById("copiarBtn"); cp.hidden = false;
+  cp.onclick = async ()=>{
+    try{ await navigator.clipboard.writeText(url); }
+    catch(e){ const t = document.createElement("textarea"); t.value = url; document.body.append(t); t.select(); try{ document.execCommand("copy"); }catch(_){} t.remove(); }
+    cp.textContent = "Link copiado!"; setTimeout(()=>{ cp.textContent = "Copiar link"; },2500);
+  };
   document.getElementById("avisoX").onclick = ()=>av.remove();
 })();
 desenharChips(); desenhar();
