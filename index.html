@@ -134,7 +134,7 @@ const PRODUTOS_PADRAO = [
 const PRODUTOS = (window.LOJA && window.LOJA.produtos) || PRODUTOS_PADRAO;
 /* ==================================== */
 /* Cupom exibido no topo (troque pelo seu) */
-const CUPOM_PADRAO = {codigo:"SEMPRENOML", texto:"10% OFF em compras acima de R$149, com desconto máximo limitado a R$200."};
+const CUPOM_PADRAO = {codigo:"PROMOHOME", texto:"10% OFF em compras acima de R$149, com desconto máximo limitado a R$200."};
 const CUPOM = (window.LOJA && window.LOJA.cupom) || CUPOM_PADRAO;
 document.getElementById("cupomCod").textContent = CUPOM.codigo;
 document.getElementById("cupomTxt").textContent = CUPOM.texto;
