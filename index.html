@@ -193,9 +193,9 @@ document.getElementById("estilo").addEventListener("change",e=>{estiloAtivo=e.ta
   if(android){
     const b = document.getElementById("chromeBtn"); b.hidden = false;
     b.href = "intent://" + location.host + location.pathname + "#Intent;scheme=https;package=com.android.chrome;end";
-    txt.textContent = "Para comprar com mais facilidade, abra no Chrome ou toque nos três pontinhos (⋯) e escolha “Abrir no navegador”.";
+    txt.textContent = "Para comprar com mais facilidade, Copie o Link e cole no Chrome ou Safari.";
   }else{
-    txt.textContent = "Para comprar com mais facilidade, toque nos três pontinhos (⋯) no canto superior e escolha “Abrir no navegador”. Ou copie o link e cole no Safari ou no Chrome.";
+    txt.textContent = "Para comprar com mais facilidade, Para comprar com mais facilidade, Copie o Link e cole no Chrome ou Safari.";
   }
   const cp = document.getElementById("copiarBtn"); cp.hidden = false;
   cp.onclick = async ()=>{
